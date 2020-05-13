@@ -1,0 +1,9 @@
+# Remove the cache file from git tracking
+flaskr/__pycache__
+flaskr/controllers/__pycache__
+flaskr/resources/__pycache__
+flaskr/services/__pycache__
+flaskr/validators/__pycache__
+
+# Remove the config from git tracking
+flaskr/config.py
