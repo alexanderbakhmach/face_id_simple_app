@@ -5,7 +5,6 @@ from .. import validate_json
 from .. import validate_schema
 from .. import user_create_schema
 from .. import user_service
-from .. import request
 
 
 @app.route('/users', methods=['GET'])
@@ -46,9 +45,16 @@ def create_user():
 
     app.logger.info(f'Create user request from {request.remote_addr} has been handled')
 
-    return jsonify({
-        'data': response_data,
-        'status': True,
-        'description': 'User has been created'
-    })
+    if response_data:
+        return jsonify({
+            'data': response_data,
+            'status': True,
+            'description': 'New capture was created'
+        })
+
+    else:
+        return jsonify({
+            'status': False,
+            'description': 'New capture was not created'   
+        })
 

@@ -5,6 +5,7 @@ import base64
 import numpy as np
 import json
 import datetime
+import time
 
 from flask import Flask
 from flask import jsonify
@@ -21,6 +22,7 @@ from jsonschema import ValidationError
 from .validators.main import validate_schema
 from .validators.main import validate_json
 from .validators.user import create_schema as user_create_schema
+from .validators.capture import create_schema as capture_create_schema
 
 from bson.json_util import dumps
 from bson.json_util import CANONICAL_JSON_OPTIONS
@@ -39,7 +41,11 @@ log_file_path = app.config.get('LOG_FILE_PATH')
 if log_file_path:
     logging.basicConfig(filename=log_file_path)
 
+DISTANCE = app.config.get('DISTANCE')
+
+
 from .services import user as user_service
+from .services import capture as capture_service
 
 from .controllers.user import *
 from .controllers.capture import *
