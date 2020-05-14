@@ -1,13 +1,45 @@
 from .. import app
 from .. import jsonify
 from .. import request
+from .. import validate_json
+from .. import validate_schema
+from .. import users_index_schema
+from .. import user_create_schema
+from .. import user_service
+from .. import request
 
 
-@app.route('/users', methods=['GET', 'POST'])
-def users():
+@app.route('/users', methods=['GET'])
+@validate_json
+def index_users():
     """
     Users controller entry point
-    Handle user create or index action due to REST
+    Handle user index action due to REST
     Return the response
     """
     pass
+
+
+@app.route('/users', methods=['POST'])
+@validate_json
+@validate_schema(user_create_schema)
+def create_user():
+    """
+    Users controller entry point
+    Handle user create action due to REST
+    Return the response
+    """
+    app.logger.info(f'Received create user request from {request.remote_addr}')
+
+    request_json = request.json
+
+    response_data = user_service.create(request_json)
+
+    app.logger.info(f'Create user request from {request.remote_addr} has been handled')
+
+    return jsonify({
+        'data': response_data,
+        'status': True,
+        'description': 'User has been created'
+    })
+
