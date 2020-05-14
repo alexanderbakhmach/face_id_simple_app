@@ -12,7 +12,7 @@ def validate_json(f):
     """
     @wraps(f)
     def wrapper(*args, **kw):
-        request.json
+        print(request.json)
 
         return f(*args, **kw)
 

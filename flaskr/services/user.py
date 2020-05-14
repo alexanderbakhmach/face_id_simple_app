@@ -3,6 +3,19 @@ from .. import base64
 from .. import cv2
 from .. import np
 from .. import face_recognition
+from .. import CANONICAL_JSON_OPTIONS
+
+
+def index(data):
+    users = mongo.db.users.find()
+
+    def serializer(user):
+        user['id'] = str(user.get('_id'))
+        del user['_id']
+
+        return user
+
+    return list(map(serializer, users))
 
 
 def create(data):

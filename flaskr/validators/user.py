@@ -13,7 +13,3 @@ create_schema = {
     },
     'required': ['info', 'images']
 }
-
-index_schema = {
-	
-}

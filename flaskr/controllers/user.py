@@ -3,21 +3,30 @@ from .. import jsonify
 from .. import request
 from .. import validate_json
 from .. import validate_schema
-from .. import users_index_schema
 from .. import user_create_schema
 from .. import user_service
 from .. import request
 
 
 @app.route('/users', methods=['GET'])
-@validate_json
 def index_users():
     """
     Users controller entry point
     Handle user index action due to REST
     Return the response
     """
-    pass
+    app.logger.info(f'Received index users request from {request.remote_addr}')
+
+    request_args = request.args
+
+    response_data = user_service.index(request_args)
+
+    app.logger.info(f'Index users request from {request.remote_addr} has been handled')
+
+    return jsonify({
+        'data': response_data,
+        'status': True
+    })
 
 
 @app.route('/users', methods=['POST'])
