@@ -42,6 +42,7 @@ if log_file_path:
     logging.basicConfig(filename=log_file_path)
 
 DISTANCE = app.config.get('DISTANCE')
+WAIT_TIME = app.config.get('WAIT_TIME')
 
 
 from .services import user as user_service

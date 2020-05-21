@@ -2,6 +2,7 @@ from .. import face_recognition
 from .. import mongo
 from .. import np
 from .. import DISTANCE
+from .. import WAIT_TIME
 from .. import time
 
 def create(data):
