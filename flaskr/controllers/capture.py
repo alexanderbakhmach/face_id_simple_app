@@ -20,8 +20,8 @@ def index_captures():
 
 
 @app.route('/captures', methods=['POST'])
-@validate_json
-@validate_schema(capture_create_schema)
+# @validate_json
+# @validate_schema(capture_create_schema)
 def create_capture():
     """
     The controller for captures

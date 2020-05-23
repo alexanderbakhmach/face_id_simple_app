@@ -6,6 +6,7 @@ import numpy as np
 import json
 import datetime
 import time
+import os
 
 from flask import Flask
 from flask import jsonify
@@ -43,6 +44,7 @@ if log_file_path:
 
 DISTANCE = app.config.get('DISTANCE')
 WAIT_TIME = app.config.get('WAIT_TIME')
+SOURCE_FOLDER = app.config.get('SOURCE_FOLDER')
 
 
 from .services import user as user_service

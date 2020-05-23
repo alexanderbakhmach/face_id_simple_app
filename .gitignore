@@ -7,3 +7,6 @@ flaskr/validators/__pycache__
 
 # Remove the config from git tracking
 flaskr/config.py
+
+# Remove src from git tracking
+flaskr/src
